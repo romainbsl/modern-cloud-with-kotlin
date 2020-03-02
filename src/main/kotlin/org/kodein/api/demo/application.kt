@@ -15,6 +15,11 @@ import kotlinx.html.body
 import kotlinx.html.h1
 import kotlinx.html.h2
 import org.kodein.api.demo.database.DatabaseConfig
+import org.kodein.api.demo.service.ItemService
+import org.kodein.api.demo.service.UserService
+import org.kodein.di.erased.bind
+import org.kodein.di.erased.singleton
+import org.kodein.di.ktor.di
 import java.text.SimpleDateFormat
 
 @Suppress("unused")
@@ -42,5 +47,10 @@ fun Application.configuration() {
             registerModule(JavaTimeModule())
             dateFormat = SimpleDateFormat()
         }
+    }
+
+    di {
+        bind() from singleton { ItemService() }
+        bind() from singleton { UserService() }
     }
 }
